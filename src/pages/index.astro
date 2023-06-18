@@ -1,9 +1,15 @@
 ---
-import Image from '../components/Image.astro'
+// import Image from '../components/Image.astro'
 import Layout from '../layouts/Layout.astro'
-const images = await Astro.glob('../../public/images/*')
+import Image from '../components/Image.astro'
 
-const imgRoutes = images.map(image => image.default.split('/').at(-1))
+const images = await Astro.glob('../../public/images/*')
+const imgRoutes = images.map(image => image.default.split('/public/').at(-1))
+const sizeArray = 3
+const newArray = []
+for (let i = 0; i < imgRoutes.length; i += sizeArray) {
+	newArray.push(imgRoutes.slice(i, i + sizeArray))
+}
 ---
 
 <Layout title="Welcome to Astro.">
@@ -15,8 +21,21 @@ const imgRoutes = images.map(image => image.default.split('/').at(-1))
 			</p>
 		</header>
 
-		<section class="grid-images grid md:grid-cols-4 gap-[10px]">
-			{imgRoutes.map(imgRoute => <Image src={`images/${imgRoute}`} />)}
+		<section class="grid-images grid gap-[10px]">
+			{
+				newArray?.map((subArray, index) => {
+					return (
+						<div
+							class={`grid md:grid-cols-7 gap-2 ${
+								index % 2 === 0 ? 'par' : 'inpar'
+							} `}>
+							{subArray.map((imgRoute: string) => (
+								<Image src={`${imgRoute}`} />
+							))}
+						</div>
+					)
+				})
+			}
 		</section>
 	</main>
 </Layout>

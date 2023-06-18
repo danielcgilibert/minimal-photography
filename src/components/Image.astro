@@ -6,4 +6,9 @@ export interface Props {
 const { src } = Astro.props
 ---
 
-<img src={src} class="rounded-[5px] w-full object-cover h-[350px]" alt={src} />
+<img
+  src={`${src}`}
+  loading="lazy"
+  class="rounded-[5px] col-span-2 w-full object-cover h-[350px]"
+  alt={src}
+/>

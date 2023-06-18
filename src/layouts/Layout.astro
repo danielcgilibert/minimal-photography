@@ -32,12 +32,30 @@ const { title } = Astro.props
 		background-color: #ffffff;
 	}
 
-	.grid-images > img:nth-child(n + 2):nth-child(-n + 4) {
-		grid-column: 3 / 5;
+	p,
+	img {
+		animation-duration: 1s;
+		animation-name: slidein;
+		animation-iteration-count: initial;
 	}
 
-	/*
-	.grid-images > img:nth-child(2n + 1) {
-		grid-column: 1 / span 2;
-	} */
+	@keyframes slidein {
+		0% {
+			transform: translate(0rem, 3rem);
+		}
+
+		100% {
+			transform: translate(0rem, 0rem);
+		}
+	}
+
+	@media (min-width: 768px) {
+		.par > img:last-child {
+			grid-column: 5 / 9;
+		}
+
+		.inpar > img:first-child {
+			grid-column: 1 / 4;
+		}
+	}
 </style>
