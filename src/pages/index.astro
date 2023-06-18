@@ -29,8 +29,8 @@ for (let i = 0; i < imgRoutes.length; i += sizeArray) {
 							class={`grid md:grid-cols-7 gap-2 ${
 								index % 2 === 0 ? 'par' : 'inpar'
 							} `}>
-							{subArray.map((imgRoute: string) => (
-								<Image src={`${imgRoute}`} />
+							{subArray.map((imgRoute, index) => (
+								<Image animationDelay={index + 1} src={`${imgRoute}`} />
 							))}
 						</div>
 					)
@@ -39,3 +39,27 @@ for (let i = 0; i < imgRoutes.length; i += sizeArray) {
 		</section>
 	</main>
 </Layout>
+
+<script>
+	console.log('asd')
+	const img = document.querySelectorAll('img')
+
+	const callback = (entries, observer) => {
+		console.log(entries)
+
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.style.animationDelay =
+					Number(entry.target.getAttribute('data-animation-offset') / 3) + 's'
+
+				entry.target.classList.add('fadeIn')
+			}
+		})
+	}
+	const options = {}
+
+	const myObserver = new IntersectionObserver(callback, options)
+	img.forEach(img => {
+		myObserver.observe(img)
+	})
+</script>
