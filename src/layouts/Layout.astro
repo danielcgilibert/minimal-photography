@@ -32,16 +32,33 @@ const { title } = Astro.props
 		background-color: #ffffff;
 	}
 
-	p,
-	img {
-		animation-duration: 1s;
-		animation-name: slidein;
-		animation-iteration-count: initial;
+	img,
+	p {
+	}
+
+	.fadeIn {
+		animation-duration: 500ms;
+		animation-name: fadein;
+		animation-timing-function: ease-out;
 	}
 
 	@keyframes slidein {
 		0% {
-			transform: translate(0rem, 3rem);
+			transform: translate(0rem, 4rem);
+		}
+
+		100% {
+			transform: translate(0rem, 0rem);
+		}
+	}
+
+	@keyframes fadein {
+		0% {
+			opacity: 0;
+			transform: translate(0rem, 0.5rem);
+		}
+		50% {
+			opacity: 1;
 		}
 
 		100% {
