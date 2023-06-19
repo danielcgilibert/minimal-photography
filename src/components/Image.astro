@@ -10,7 +10,7 @@ const { src, animationDelay } = Astro.props
 <img
   src={`${src}`}
   loading="lazy"
-  class="rounded-[5px] col-span-2 w-full object-cover h-[350px]"
+  class="rounded-[5px] col-span-2 w-full object-cover transition-all opacity-0 h-[350px]"
   data-animation-offset={animationDelay}
   alt={src}
 />
