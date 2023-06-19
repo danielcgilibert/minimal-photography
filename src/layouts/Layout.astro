@@ -32,22 +32,31 @@ const { title } = Astro.props
 		background-color: #ffffff;
 	}
 
-	img,
-	p {
+	.title {
+		animation-duration: 0.5s;
+		animation-name: fadein;
+		animation-timing-function: ease-out;
+		transition: opacity 250ms ease-in;
 	}
 
 	.fadeIn {
-		animation-duration: 500ms;
+		animation-duration: 300ms;
 		animation-name: fadein;
 		animation-timing-function: ease-out;
+		transition: all 300ms ease-in;
+		animation-fill-mode: forwards;
 	}
 
 	@keyframes slidein {
 		0% {
-			transform: translate(0rem, 4rem);
+			opacity: 0;
+
+			transform: translate(0rem, 6rem);
 		}
 
 		100% {
+			opacity: 1;
+
 			transform: translate(0rem, 0rem);
 		}
 	}
@@ -55,13 +64,14 @@ const { title } = Astro.props
 	@keyframes fadein {
 		0% {
 			opacity: 0;
-			transform: translate(0rem, 0.5rem);
+			transform: translate(0rem, 2.5rem);
 		}
 		50% {
-			opacity: 1;
+			opacity: 0.4;
 		}
 
 		100% {
+			opacity: 1;
 			transform: translate(0rem, 0rem);
 		}
 	}
